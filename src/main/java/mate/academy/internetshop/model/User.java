@@ -6,6 +6,13 @@ public class User {
     private String login;
     private String password;
 
+    public User(Long id, String name, String login, String password) {
+        this.id = id;
+        this.name = name;
+        this.login = login;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
@@ -36,5 +43,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{ name = " + name + '\''
+                + ", login='" + login + '\''
+                + ", password='" + password
+                + '\'' + '}';
     }
 }

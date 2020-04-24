@@ -37,7 +37,7 @@ public class BucketServiceImpl implements BucketService {
     @Override
     public void clear(Bucket bucket) {
         bucket.getProducts().clear();
-        bucketDao.update(bucket);
+        bucketDao.delete(bucket.getId());
     }
 
     @Override
@@ -45,7 +45,8 @@ public class BucketServiceImpl implements BucketService {
         return bucketDao.getAll().stream()
                 .filter(bucket -> bucket.getUser().getId().equals(userId))
                 .findFirst()
-                .orElseGet(() -> bucketDao.create(new Bucket(userService.get(userId))));
+                .orElseGet(() -> bucketDao.create(
+                        new Bucket(userService.get(userId))));
     }
 
     @Override

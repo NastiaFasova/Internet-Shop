@@ -1,6 +1,5 @@
 package mate.academy.internetshop;
 
-import java.util.List;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Bucket;
 import mate.academy.internetshop.model.Order;
@@ -16,7 +15,7 @@ public class InternetShop {
     private static Injector injector = Injector.getInstance("mate.academy.internetshop");
 
     public static void main(String[] args) {
-        final ProductService itemService
+        final ProductService productService
                 = (ProductService) injector.getInstance(ProductService.class);
         final OrderService orderService
                 = (OrderService) injector.getInstance(OrderService.class);
@@ -25,73 +24,75 @@ public class InternetShop {
         final BucketService bucketService
                 = (BucketService) injector.getInstance(BucketService.class);
 
-        initializeItem(itemService);
-        initializeUser(userService);
+        System.out.println("\nTesting product service: ");
+        testProduct(productService);
+        System.out.println("\nTesting user service: ");
+        testUser(userService);
+        System.out.println("\nTesting bucket service: ");
+        testBucket(userService, bucketService);
+        System.out.println("\nTesting order service: ");
+        testOrder(productService, orderService, userService, bucketService);
+    }
 
-        List<Product> items = itemService.getAll();
-        List<User> users = userService.getAll();
-        System.out.println("After initializing: ");
-        printData(items);
-        printData(users);
-
-        itemService.delete(items.get(1));
-        userService.delete(1L);
-        System.out.println("\nAfter deleting: ");
-        printData(items);
-        printData(users);
-
-        System.out.println("\nAfter creating a new item: ");
-        Product item = new Product("Nokia", 130.98);
-        User user = new User("Igor", "igor456", "8790");
-        itemService.create(item);
+    private static void testOrder(ProductService productService, OrderService orderService,
+                                  UserService userService, BucketService bucketService) {
+        User user = new User("Arthur", "Arcana Lord", "123123123");
         userService.create(user);
-        printData(items);
-        printData(users);
-
-        item.setName("Samsung");
-        item.setPrice(200.80);
-        user.setName("John");
-        itemService.update(item);
-        userService.update(user);
-        System.out.println("\nAfter updating: ");
-        printData(items);
-        printData(users);
-
-        System.out.println("\nUsers orders: " + orderService.getUserOrders(user));
-
-        Bucket bucket = new Bucket(user);
-        Product product = new Product("Sony", 100.90);
-
-        bucketService.addProduct(bucket, product);
-        System.out.println("\nGet by UserId: " + bucketService.getByUserId(user.getId()));
-
-        System.out.println("\nAfter removing the product(Sony)"
-                + bucketService.getAllProducts(bucket));
-
-        Order order = new Order(items, user);
-        orderService.delete(order.getId());
-        System.out.println("\nAfter deleting the order: " + orderService.getUserOrders(user));
+        Product phone = new Product("NOKIA789", 250.00);
+        Product panasonic = new Product("Panasonic", 1500.00);
+        Product iphone = new Product("IPhoneX", 1000.00);
+        productService.create(phone);
+        productService.create(panasonic);
+        productService.create(iphone);
+        Bucket bucket = bucketService.getByUserId(user.getId());
+        bucketService.addProduct(bucket, phone);
+        bucketService.addProduct(bucket, panasonic);
+        bucketService.addProduct(bucket, iphone);
+        Order order = orderService.completeOrder(bucketService.getAllProducts(bucket), user);
+        System.out.println("Get by orderId: " + orderService.get(order.getId()));
+        System.out.println("Get by user Id" + orderService.getUserOrders(user));
     }
 
-    private static void printData(List<?> items) {
-        items.forEach(System.out::println);
+    private static void testBucket(UserService userService, BucketService bucketService) {
+        User user = new User("Artem", "artem890", "1231123");
+        userService.create(user);
+        Product phone = new Product("NOKIA789", 250.00);
+        Product panasonic = new Product("Panasonic", 1500.00);
+        Product iphone = new Product("IPhoneX", 1000.00);
+        Bucket bucket = bucketService.getByUserId(user.getId());
+        bucketService.addProduct(bucket, phone);
+        bucketService.addProduct(bucket, panasonic);
+        bucketService.addProduct(bucket, iphone);
+        System.out.println("After adding 3 items: " + bucketService.getAllProducts(bucket));
+        bucketService.deleteProduct(bucket, phone);
+        System.out.println("After deleting an item: " + bucketService.getAllProducts(bucket));
+        userService.delete(user.getId());
     }
 
-    private static void initializeItem(ProductService itemService) {
+    private static void testProduct(ProductService productService) {
         Product item1 = new Product("IPhone", 450.50);
         Product item2 = new Product("Samsung", 250.60);
         Product item3 = new Product("Meizu", 190.50);
-        itemService.create(item1);
-        itemService.create(item2);
-        itemService.create(item3);
+        productService.create(item1);
+        productService.create(item2);
+        productService.create(item3);
+        System.out.println(productService.getAll());
+        System.out.println(productService.get(item1.getId()));
+        productService.delete(item1.getId());
+        System.out.println(productService.getAll());
     }
 
-    private static void initializeUser(UserService userService) {
+    private static void testUser(UserService userService) {
         User user1 = new User("Oleg", "oleh@788", "00000");
         User user2 = new User("Dmytro", "dmytro888", "9999");
         User user3 = new User("Vasia", "vasia322", "789");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);
+        System.out.println(userService.getAll());
+        System.out.println(userService.get(user1.getId()));
+        userService.delete(user1.getId());
+        System.out.println(userService.getAll());
+        System.out.println("*****************");
     }
 }

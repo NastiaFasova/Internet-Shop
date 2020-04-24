@@ -2,7 +2,6 @@ package mate.academy.internetshop.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Bucket {
     private Long id;
@@ -12,9 +11,6 @@ public class Bucket {
     public Bucket(User user) {
         products = new ArrayList<>();
         this.user = user;
-    }
-
-    public Bucket(Optional<User> user) {
     }
 
     public Long getId() {

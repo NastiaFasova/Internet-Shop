@@ -5,8 +5,13 @@ import java.util.List;
 
 public class Bucket {
     private Long id;
-    private List<Product> items = new ArrayList<>();
-    private Long userId;
+    private List<Product> products;
+    private User user;
+
+    public Bucket(User user) {
+        products = new ArrayList<>();
+        this.user = user;
+    }
 
     public Long getId() {
         return id;
@@ -16,19 +21,26 @@ public class Bucket {
         this.id = id;
     }
 
-    public List<Product> getItems() {
-        return items;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setItems(List<Product> items) {
-        this.items = items;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Bucket{"
+                + "id=" + id + ", products=" + products
+                + ", user=" + user + '}';
     }
 }

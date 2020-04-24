@@ -2,12 +2,12 @@ package mate.academy.internetshop.service.impl;
 
 import java.util.List;
 import mate.academy.internetshop.dao.BucketDao;
-import mate.academy.internetshop.dao.ProductDao;
 import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.lib.Service;
 import mate.academy.internetshop.model.Bucket;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.BucketService;
+import mate.academy.internetshop.service.UserService;
 
 @Service
 public class BucketServiceImpl implements BucketService {
@@ -16,13 +16,13 @@ public class BucketServiceImpl implements BucketService {
     private BucketDao bucketDao;
 
     @Inject
-    private ProductDao productDao;
+    private UserService userService;
 
     @Override
     public Bucket addProduct(Bucket bucket, Product product) {
-        Bucket newBucket = bucketDao.create(bucket);
-        newBucket.getProducts().add(product);
-        return bucketDao.update(newBucket);
+        bucket.getProducts().add(product);
+        bucketDao.update(bucket);
+        return bucket;
     }
 
     @Override
@@ -42,7 +42,10 @@ public class BucketServiceImpl implements BucketService {
 
     @Override
     public Bucket getByUserId(Long userId) {
-        return bucketDao.getByUserId(userId).get();
+        return bucketDao.getAll().stream()
+                .filter(bucket -> bucket.getUser().getId().equals(userId))
+                .findFirst()
+                .orElseGet(() -> bucketDao.create(new Bucket(userService.get(userId))));
     }
 
     @Override

@@ -6,8 +6,6 @@ import mate.academy.internetshop.model.Bucket;
 
 public interface BucketDao {
 
-    Optional<Bucket> getByUserId(Long userId);
-
     Bucket create(Bucket bucket);
 
     Optional<Bucket> get(Long id);

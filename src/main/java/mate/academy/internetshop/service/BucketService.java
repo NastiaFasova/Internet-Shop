@@ -10,7 +10,7 @@ public interface BucketService {
 
     boolean deleteProduct(Bucket bucket, Product product);
 
-    void clear(Bucket bucket); //remove all products from the shoppingCart
+    void clear(Bucket bucket);
 
     Bucket getByUserId(Long userId);
 

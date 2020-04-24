@@ -42,7 +42,7 @@ public class InternetShop {
 
         System.out.println("\nAfter creating a new item: ");
         Product item = new Product("Nokia", 130.98);
-        User user = new User(4L, "Igor", "igor456", "8790");
+        User user = new User("Igor", "igor456", "8790");
         itemService.create(item);
         userService.create(user);
         printData(items);
@@ -57,10 +57,9 @@ public class InternetShop {
         printData(items);
         printData(users);
 
-        orderService.completeOrder(items,user);
         System.out.println("\nUsers orders: " + orderService.getUserOrders(user));
 
-        Bucket bucket = new Bucket(1L, items, user);
+        Bucket bucket = new Bucket(user);
         Product product = new Product("Sony", 100.90);
 
         bucketService.addProduct(bucket, product);
@@ -69,7 +68,7 @@ public class InternetShop {
         System.out.println("\nAfter removing the product(Sony)"
                 + bucketService.getAllProducts(bucket));
 
-        Order order = new Order(1L, items, user);
+        Order order = new Order(items, user);
         orderService.delete(order.getId());
         System.out.println("\nAfter deleting the order: " + orderService.getUserOrders(user));
     }
@@ -88,9 +87,9 @@ public class InternetShop {
     }
 
     private static void initializeUser(UserService userService) {
-        User user1 = new User(1L, "Oleg", "oleh@788", "00000");
-        User user2 = new User(2L,"Dmytro", "dmytro888", "9999");
-        User user3 = new User(3L,"Vasia", "vasia322", "789");
+        User user1 = new User("Oleg", "oleh@788", "00000");
+        User user2 = new User("Dmytro", "dmytro888", "9999");
+        User user3 = new User("Vasia", "vasia322", "789");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);

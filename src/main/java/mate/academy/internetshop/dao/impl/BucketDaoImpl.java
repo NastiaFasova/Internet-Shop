@@ -6,18 +6,15 @@ import java.util.stream.IntStream;
 import mate.academy.internetshop.dao.BucketDao;
 import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.lib.Dao;
+import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.model.Bucket;
+import mate.academy.internetshop.service.UserService;
 
 @Dao
 public class BucketDaoImpl implements BucketDao {
 
-    @Override
-    public Optional<Bucket> getByUserId(Long userId) {
-        return Storage.buckets
-                .stream()
-                .filter(b -> b.getUser().getId().equals(userId))
-                .findFirst();
-    }
+    @Inject
+    private UserService userService;
 
     @Override
     public Bucket create(Bucket bucket) {
@@ -41,8 +38,8 @@ public class BucketDaoImpl implements BucketDao {
     @Override
     public Bucket update(Bucket bucket) {
         IntStream.range(0, Storage.buckets.size())
-                .filter(x -> bucket.getId().equals(Storage.buckets.get(x).getId()))
-                .forEach(i -> Storage.buckets.set(i, bucket));
+                .filter(ind -> Storage.buckets.get(ind).getId().equals(bucket.getId()))
+                .forEach(ind -> Storage.buckets.set(ind, bucket));
         return bucket;
     }
 

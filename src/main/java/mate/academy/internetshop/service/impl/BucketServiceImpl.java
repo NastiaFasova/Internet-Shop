@@ -53,4 +53,29 @@ public class BucketServiceImpl implements BucketService {
     public List<Product> getAllProducts(Bucket bucket) {
         return bucket.getProducts();
     }
+
+    @Override
+    public Bucket create(Bucket element) {
+        return bucketDao.create(element);
+    }
+
+    @Override
+    public Bucket get(Long id) {
+        return bucketDao.get(id).get();
+    }
+
+    @Override
+    public List<Bucket> getAll() {
+        return bucketDao.getAll();
+    }
+
+    @Override
+    public Bucket update(Bucket element) {
+        return bucketDao.update(element);
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return bucketDao.delete(id);
+    }
 }

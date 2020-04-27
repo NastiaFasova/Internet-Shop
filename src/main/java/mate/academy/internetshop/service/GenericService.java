@@ -1,7 +1,5 @@
 package mate.academy.internetshop.service;
 
-import mate.academy.internetshop.model.Product;
-
 import java.util.List;
 
 public interface GenericService<T, K> {

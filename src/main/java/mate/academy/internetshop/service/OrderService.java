@@ -5,7 +5,7 @@ import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.User;
 
-public interface OrderService extends GenericService<Order, Long>{
+public interface OrderService extends GenericService<Order, Long> {
 
     Order completeOrder(List<Product> products, User user);
 

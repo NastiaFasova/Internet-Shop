@@ -32,6 +32,11 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -58,6 +63,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.3</version>
                 <configuration>
                     <webXml>src/main/webapp/web.xml</webXml>
                 </configuration>

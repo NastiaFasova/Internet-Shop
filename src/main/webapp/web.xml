@@ -9,6 +9,70 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allUsers</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.GetAllUsersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allUsers</servlet-name>
+        <url-pattern>/allUsers</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.RegistrationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleting</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleting</servlet-name>
+        <url-pattern>/deleting</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addProduct</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.AddProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addProduct</servlet-name>
+        <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allProducts</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.GetAllProductsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProducts</servlet-name>
+        <url-pattern>/allProducts</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addProductToBucket</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.AddProductToBucketController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addProductToBucket</servlet-name>
+        <url-pattern>/addProductToBucket</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>showBucket</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.GetBucketController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showBucket</servlet-name>
+        <url-pattern>/showBucket</url-pattern>
+    </servlet-mapping>
+
 </web-app>

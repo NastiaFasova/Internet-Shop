@@ -18,7 +18,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>allUsers</servlet-name>
-        <url-pattern>/users/all</url-pattern>
+        <url-pattern>/allUsers</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -32,11 +32,11 @@
 
     <servlet>
         <servlet-name>deleting</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.DeleteUsersController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.DeleteUserController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleting</servlet-name>
-        <url-pattern>/users/delete</url-pattern>
+        <url-pattern>/deleting</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -49,12 +49,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>getAllProducts</servlet-name>
+        <servlet-name>allProducts</servlet-name>
         <servlet-class>mate.academy.internetshop.controllers.GetProductsController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>getAllProducts</servlet-name>
-        <url-pattern>/products/all</url-pattern>
+        <servlet-name>allProducts</servlet-name>
+        <url-pattern>/allProducts</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -72,7 +72,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>showBucket</servlet-name>
-        <url-pattern>/buckets/all</url-pattern>
+        <url-pattern>/showBucket</url-pattern>
     </servlet-mapping>
 
 </web-app>

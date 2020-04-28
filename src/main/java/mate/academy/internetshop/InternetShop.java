@@ -1,5 +1,6 @@
 package mate.academy.internetshop;
 
+import java.math.BigDecimal;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Bucket;
 import mate.academy.internetshop.model.Order;
@@ -38,9 +39,9 @@ public class InternetShop {
                                   UserService userService, BucketService bucketService) {
         User user = new User("Arthur", "Arcana Lord", "123123123");
         userService.create(user);
-        Product phone = new Product("NOKIA789", 250.00);
-        Product panasonic = new Product("Panasonic", 1500.00);
-        Product iphone = new Product("IPhoneX", 1000.00);
+        Product phone = new Product("NOKIA789", new BigDecimal(250.00));
+        Product panasonic = new Product("Panasonic", new BigDecimal(150.000));
+        Product iphone = new Product("IPhoneX", new BigDecimal(100.000));
         productService.create(phone);
         productService.create(panasonic);
         productService.create(iphone);
@@ -56,9 +57,9 @@ public class InternetShop {
     private static void testBucket(UserService userService, BucketService bucketService) {
         User user = new User("Artem", "artem890", "1231123");
         userService.create(user);
-        Product phone = new Product("NOKIA789", 250.00);
-        Product panasonic = new Product("Panasonic", 1500.00);
-        Product iphone = new Product("IPhoneX", 1000.00);
+        Product phone = new Product("NOKIA789", new BigDecimal(250.00));
+        Product panasonic = new Product("Panasonic", new BigDecimal(1500.00));
+        Product iphone = new Product("IPhoneX", new BigDecimal(1000.00));
         Bucket bucket = bucketService.getByUserId(user.getId());
         bucketService.addProduct(bucket, phone);
         bucketService.addProduct(bucket, panasonic);
@@ -70,9 +71,9 @@ public class InternetShop {
     }
 
     private static void testProduct(ProductService productService) {
-        Product item1 = new Product("IPhone", 450.50);
-        Product item2 = new Product("Samsung", 250.60);
-        Product item3 = new Product("Meizu", 190.50);
+        Product item1 = new Product("IPhone", new BigDecimal(450.50));
+        Product item2 = new Product("Samsung", new BigDecimal(250.60));
+        Product item3 = new Product("Meizu", new BigDecimal(190.50));
         productService.create(item1);
         productService.create(item2);
         productService.create(item3);

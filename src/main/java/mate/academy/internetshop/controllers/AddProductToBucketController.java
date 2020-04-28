@@ -12,13 +12,13 @@ import mate.academy.internetshop.service.ProductService;
 
 public class AddProductToBucketController extends HttpServlet {
 
-    private static final Injector injector = Injector.getInstance("mate.academy.internetshop");
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
     private static final Long USER_ID = 1L;
 
-    private BucketService bucketService = (BucketService) injector.getInstance(BucketService.class);
+    private BucketService bucketService = (BucketService) INJECTOR.getInstance(BucketService.class);
 
     private ProductService productService
-            = (ProductService) injector.getInstance(ProductService.class);
+            = (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

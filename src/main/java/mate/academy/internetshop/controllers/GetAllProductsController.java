@@ -10,12 +10,12 @@ import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.ProductService;
 
-public class GetProductsController extends HttpServlet {
+public class GetAllProductsController extends HttpServlet {
 
-    private static final Injector injector = Injector.getInstance("mate.academy.internetshop");
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
 
     private ProductService productService
-            = (ProductService) injector.getInstance(ProductService.class);
+            = (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

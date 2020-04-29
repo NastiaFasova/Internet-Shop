@@ -12,9 +12,7 @@ import mate.academy.internetshop.service.BucketService;
 
 public class GetBucketController extends HttpServlet {
     private static final Long USER_ID = 1L;
-
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-
     private BucketService bucketService
             = (BucketService) INJECTOR.getInstance(BucketService.class);
 

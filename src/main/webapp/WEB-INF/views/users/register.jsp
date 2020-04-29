@@ -4,7 +4,6 @@
     <title>Registration</title>
 </head>
 <body>
-Hello! Please, provide your user details!
 <h4 style="color: red">${message}</h4>
 <form action="${pageContext.request.contextPath}/users/register" method="post">
     <h1>Register</h1>

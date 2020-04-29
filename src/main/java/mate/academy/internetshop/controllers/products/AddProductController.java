@@ -11,9 +11,7 @@ import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.ProductService;
 
 public class AddProductController extends HttpServlet {
-
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-
     private ProductService productService
             = (ProductService) INJECTOR.getInstance(ProductService.class);
 
@@ -29,7 +27,7 @@ public class AddProductController extends HttpServlet {
         String name = req.getParameter("name");
         String productPrice = req.getParameter("price");
         BigDecimal price = new BigDecimal(productPrice);
-        resp.sendRedirect(req.getContextPath() + "/");
         productService.create(new Product(name, price));
+        resp.sendRedirect(req.getContextPath() + "/products/all");
     }
 }

@@ -1,4 +1,4 @@
-package mate.academy.internetshop.controllers;
+package mate.academy.internetshop.controllers.products;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,21 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Product;
-import mate.academy.internetshop.service.BucketService;
+import mate.academy.internetshop.service.ProductService;
 
-public class GetBucketController extends HttpServlet {
-    private static final Long USER_ID = 1L;
+public class GetAllProductsController extends HttpServlet {
 
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
 
-    private BucketService bucketService
-            = (BucketService) INJECTOR.getInstance(BucketService.class);
+    private ProductService productService
+            = (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Product> products = bucketService.getAllProducts(bucketService.getByUserId(USER_ID));
+        List<Product> products = productService.getAll();
         req.setAttribute("products", products);
-        req.getRequestDispatcher("/WEB-INF/views/showBucket.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
     }
 }

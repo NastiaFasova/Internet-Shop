@@ -1,4 +1,4 @@
-package mate.academy.internetshop.controllers;
+package mate.academy.internetshop.controllers.bucket;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -26,6 +26,6 @@ public class AddProductToBucketController extends HttpServlet {
         String productId = req.getParameter("id");
         Bucket bucket = bucketService.getByUserId(USER_ID);
         bucketService.addProduct(bucket, productService.get(Long.valueOf(productId)));
-        resp.sendRedirect(req.getContextPath() + "/showBucket");
+        resp.sendRedirect(req.getContextPath() + "/bucket/show");
     }
 }

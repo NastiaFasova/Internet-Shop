@@ -50,7 +50,7 @@
 
     <servlet>
         <servlet-name>allProducts</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.products.GetAllProductsController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.products.GetAllProductsToEditController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allProducts</servlet-name>

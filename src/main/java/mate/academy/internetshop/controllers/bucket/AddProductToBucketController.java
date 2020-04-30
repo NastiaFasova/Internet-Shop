@@ -23,6 +23,6 @@ public class AddProductToBucketController extends HttpServlet {
         String productId = req.getParameter("id");
         Bucket bucket = bucketService.getByUserId(USER_ID);
         bucketService.addProduct(bucket, productService.get(Long.valueOf(productId)));
-        resp.sendRedirect(req.getContextPath() + "/products/buy");
+        resp.sendRedirect(req.getContextPath() + "/bucket/show");
     }
 }

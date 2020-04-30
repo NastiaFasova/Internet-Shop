@@ -28,8 +28,7 @@ public class AddOrderController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Bucket bucket = bucketService.getByUserId(USER_ID);
-        Order order = orderService.completeOrder(bucket.getProducts(),
-                bucket.getUser());
+        orderService.completeOrder(bucket.getProducts(), bucket.getUser());
         bucketService.clear(bucket);
         resp.sendRedirect(req.getContextPath() + "/order/all");
     }

@@ -131,7 +131,7 @@
 
     <servlet>
         <servlet-name>getProductsFromBucket</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.bucket.GetProductsFromBucketController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.bucket.GetAllProductsToBuyController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getProductsFromBucket</servlet-name>

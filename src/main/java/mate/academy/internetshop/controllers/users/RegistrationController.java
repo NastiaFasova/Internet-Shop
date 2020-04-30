@@ -1,4 +1,4 @@
-package mate.academy.internetshop.controllers;
+package mate.academy.internetshop.controllers.users;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,13 +11,12 @@ import mate.academy.internetshop.service.UserService;
 
 public class RegistrationController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/users/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -33,7 +32,7 @@ public class RegistrationController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same");
-            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/users/register.jsp").forward(req, resp);
         }
     }
 }

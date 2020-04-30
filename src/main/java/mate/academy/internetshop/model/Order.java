@@ -20,11 +20,11 @@ public class Order {
         this.id = id;
     }
 
-    public List<Product> getItems() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setItems(List<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
@@ -38,7 +38,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "items=" + products
+        return "Order{" + "products=" + products
                 + "\n user= " + user + '}';
     }
 }

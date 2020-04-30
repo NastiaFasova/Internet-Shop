@@ -2,16 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All Products</title>
+    <title>Your products</title>
 </head>
 <body>
-<h1>All products:</h1>
+<h1>Products in your bucket:</h1>
 <table border="1">
     <tr>
         <th>Product Id</th>
         <th>Product Name</th>
         <th>Product Price</th>
-        <th>Click to add</th>
+        <th>Click to delete</th>
     </tr>
     <c:forEach var = "product" items = "${products}">
         <tr>
@@ -25,14 +25,21 @@
                 <c:out value="${product.price}" />
             </td>
             <td>
-                <a href = "${pageContext.request.contextPath}/addProductToBucket?id=${product.id}">Add</a>
+                <a href = "${pageContext.request.contextPath}/deleteProductFromBucket?id=${product.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 <br>
+<form action="${pageContext.request.contextPath}/products/buy">
+    <button>Add more products</button>
+</form>
+<form action="${pageContext.request.contextPath}/order/new">
+    <button>Checkout</button>
+</form>
+<br>
 <form action="${pageContext.request.contextPath}/">
-    <button>Come back to Main Menu</button>
+    <button>Come back to the Main Menu</button>
 </form>
 </body>
 </html>

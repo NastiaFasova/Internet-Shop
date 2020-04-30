@@ -3,6 +3,39 @@
 <html>
 <head>
     <title>Your products</title>
+    <style>
+        table{
+            width: 750px;
+            margin: 40px 30px;
+            font-family:  Arial, serif;
+        }
+        td{
+            padding:5px;
+            text-align: center;
+        }
+        th{
+            padding:5px;
+        }
+        h1{
+            margin-left: 50px;
+            font-family:  Arial, serif;
+            margin-top: 30px;
+        }
+        button{
+            width: 200px;
+            background-color: royalblue;
+            color: ivory;
+            font-size: 15px;
+            border-radius: 20px;
+            padding: 7px;
+            margin-left:250px;
+        }
+        button:hover{
+            border-color: deepskyblue;
+            border-width: 2px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <h1>Products in your bucket:</h1>
@@ -32,7 +65,7 @@
 </table>
 <br>
 <form action="${pageContext.request.contextPath}/products/buy">
-    <button>Add more products</button>
+    <button>Buy more products</button>
 </form>
 <form action="${pageContext.request.contextPath}/order/new">
     <button>Checkout</button>

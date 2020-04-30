@@ -3,9 +3,42 @@
 <html>
 <head>
     <title>All Users</title>
+    <style>
+        table{
+            width: 750px;
+            margin: 40px 30px;
+            font-family:  Arial, serif;
+        }
+        td{
+            padding:5px;
+            text-align: center;
+        }
+        th{
+            padding:5px;
+        }
+        h1{
+            margin-left: 50px;
+            font-family:  Arial, serif;
+            margin-top: 30px;
+        }
+        button{
+            width: 200px;
+            background-color: royalblue;
+            color: ivory;
+            font-size: 15px;
+            border-radius: 20px;
+            padding: 7px;
+            margin-left:250px;
+        }
+        button:hover{
+            border-color: deepskyblue;
+            border-width: 2px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-Users:
+<h1>Users:</h1>
 <table border="1">
     <tr>
         <th>Id</th>

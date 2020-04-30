@@ -2,28 +2,58 @@
 <html>
 <head>
     <title>Menu</title>
+    <style>
+        div{
+            /*display:block;*/
+            margin:20px auto;
+            width: 870px;
+        }
+        form{
+            display: inline-block;
+            margin-right: 10px;
+            margin-top:20px;
+        }
+        h1{
+            margin:20px 300px;
+            font-size: 40px;
+        }
+        button{
+            padding:10px;
+            border-radius: 10px;
+            background-color: royalblue;
+            color: ivory;
+            font-size: 17px;
+            font-family: Calibri, sans-serif;
+        }
+        button:hover{
+            border-color: deepskyblue;
+            border-width: 2px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<h1>Main Menu</h1>
-
-<form action="${pageContext.request.contextPath}/users/register">
-    <button>Register</button>
-</form>
-<form action="${pageContext.request.contextPath}/products/buy">
-    <button>Buy products</button>
-</form>
-<form action="${pageContext.request.contextPath}/bucket/show">
-    <button>Show your bucket</button>
-</form>
-</form>
-<form action="${pageContext.request.contextPath}/products/all">
-    <button>Add and delete products</button>
-</form>
-<form action="${pageContext.request.contextPath}/users/all">
-    <button>Show all users</button>
-</form>
-<form action="${pageContext.request.contextPath}/order/all">
-    <button>Show all orders</button>
-</form>
+<div>
+    <h1>Main Menu</h1>
+    <form action="${pageContext.request.contextPath}/users/register">
+        <button>Register</button>
+    </form>
+    <form action="${pageContext.request.contextPath}/products/buy">
+        <button>Buy products</button>
+    </form>
+    <form action="${pageContext.request.contextPath}/bucket/show">
+        <button>Show your bucket</button>
+    </form>
+    </form>
+    <form action="${pageContext.request.contextPath}/products/all">
+        <button>Add and delete products</button>
+    </form>
+    <form action="${pageContext.request.contextPath}/users/all">
+        <button>Show all users</button>
+    </form>
+    <form action="${pageContext.request.contextPath}/order/all">
+        <button>Show all orders</button>
+    </form>
+</div>
 </body>
 </html>

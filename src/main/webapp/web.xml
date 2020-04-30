@@ -126,6 +126,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>productBuy</servlet-name>
+        <url-pattern>/productBuy</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getProductsFromBucket</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.bucket.GetProductsFromBucketController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getProductsFromBucket</servlet-name>
         <url-pattern>/products/buy</url-pattern>
     </servlet-mapping>
 

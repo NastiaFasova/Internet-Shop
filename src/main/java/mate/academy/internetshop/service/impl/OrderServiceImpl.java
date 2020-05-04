@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getUserOrders(User user) {
         return orderDao.getAll()
                 .stream()
-                .filter(u -> u.getId().equals(user.getId()))
+                .filter(u -> u.getUser().getId().equals(user.getId()))
                 .collect(Collectors.toList());
     }
 

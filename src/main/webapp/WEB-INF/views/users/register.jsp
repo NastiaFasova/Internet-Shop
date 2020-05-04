@@ -55,7 +55,7 @@
 <body>
 <div>
     <h4 style="color: red">${message}</h4>
-    <form action="${pageContext.request.contextPath}/users/register" method="post">
+    <form action="${pageContext.request.contextPath}/registration" method="post">
         <h1>Registration</h1>
         <input type="text" placeholder="Enter your Name" name="name" required>
         <input type="text" placeholder="Enter Login" name="login" required>

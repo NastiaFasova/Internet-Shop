@@ -60,7 +60,7 @@
         <input type="password" placeholder="Enter Password" name="psw" required>
         <button type="submit">Login</button>
     </form>
-    <form action="${pageContext.request.contextPath}/users/register">
+    <form action="${pageContext.request.contextPath}/registration">
         <button>Register</button>
     </form>
 </div>

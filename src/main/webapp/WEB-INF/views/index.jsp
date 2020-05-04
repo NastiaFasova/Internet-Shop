@@ -34,23 +34,23 @@
 <body>
 <div>
     <h1>Main Menu</h1>
-    <form action="${pageContext.request.contextPath}/users/register">
+    <form action="${pageContext.request.contextPath}/registration">
         <button>Register</button>
     </form>
-    <form action="${pageContext.request.contextPath}/products/buy">
+    <form action="${pageContext.request.contextPath}/product/buy">
         <button>Buy products</button>
     </form>
     <form action="${pageContext.request.contextPath}/bucket/show">
         <button>Show your bucket</button>
     </form>
     </form>
-    <form action="${pageContext.request.contextPath}/products/all">
+    <form action="${pageContext.request.contextPath}/products">
         <button>Add and delete products</button>
     </form>
-    <form action="${pageContext.request.contextPath}/users/all">
+    <form action="${pageContext.request.contextPath}/users">
         <button>Show all users</button>
     </form>
-    <form action="${pageContext.request.contextPath}/order/all">
+    <form action="${pageContext.request.contextPath}/orders">
         <button>Show all orders</button>
     </form>
     <form action="${pageContext.request.contextPath}/logout">

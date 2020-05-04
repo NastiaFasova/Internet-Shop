@@ -1,7 +1,7 @@
 package mate.academy.internetshop.controllers.users;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class RegistrationController extends HttpServlet {
 
         if (password.equals(repeatPassword)) {
             User user = new User(name, login, password);
-            user.setRoles(List.of(Role.of("USER")));
+            user.setRoles(Set.of(Role.of("USER")));
             userService.create(user);
             resp.sendRedirect(req.getContextPath() + "/");
         } else {

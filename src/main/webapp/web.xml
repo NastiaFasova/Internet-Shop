@@ -18,7 +18,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>allUsers</servlet-name>
-        <url-pattern>/users/all</url-pattern>
+        <url-pattern>/users</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -36,7 +36,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
-        <url-pattern>/users/register</url-pattern>
+        <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -45,7 +45,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteUser</servlet-name>
-        <url-pattern>/deleteUser</url-pattern>
+        <url-pattern>/user/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -54,7 +54,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
-        <url-pattern>/products/add</url-pattern>
+        <url-pattern>/product/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -63,7 +63,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>allProducts</servlet-name>
-        <url-pattern>/products/all</url-pattern>
+        <url-pattern>/products</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -81,16 +81,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProductFromBucket</servlet-name>
-        <url-pattern>/deleteProductFromBucket</url-pattern>
+        <url-pattern>/bucket/product/remove</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>orderNew</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.order.AddOrderController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.order.CompleteOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>orderNew</servlet-name>
-        <url-pattern>/order/new</url-pattern>
+        <url-pattern>/order/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -99,7 +99,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>allOrders</servlet-name>
-        <url-pattern>/order/all</url-pattern>
+        <url-pattern>/orders</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -126,7 +126,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>productDelete</servlet-name>
-        <url-pattern>/products/delete</url-pattern>
+        <url-pattern>/product/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -135,7 +135,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>productBuy</servlet-name>
-        <url-pattern>/productBuy</url-pattern>
+        <url-pattern>/bucket/product/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -144,7 +144,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>getProductsFromBucket</servlet-name>
-        <url-pattern>/products/buy</url-pattern>
+        <url-pattern>/product/buy</url-pattern>
     </servlet-mapping>
 
     <servlet>

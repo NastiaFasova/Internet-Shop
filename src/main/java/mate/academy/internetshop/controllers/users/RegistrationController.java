@@ -1,11 +1,13 @@
 package mate.academy.internetshop.controllers.users;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
+import mate.academy.internetshop.model.Role;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.UserService;
 
@@ -28,7 +30,9 @@ public class RegistrationController extends HttpServlet {
         String repeatPassword = req.getParameter("psw-repeat");
 
         if (password.equals(repeatPassword)) {
-            userService.create(new User(name, login, password));
+            User user = new User(name, login, password);
+            user.setRoles(List.of(Role.of("USER")));
+            userService.create(user);
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same");

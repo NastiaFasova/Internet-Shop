@@ -4,9 +4,8 @@
     <title>Menu</title>
     <style>
         div{
-            /*display:block;*/
             margin:20px auto;
-            width: 870px;
+            width: 970px;
         }
         form{
             display: inline-block;
@@ -14,7 +13,7 @@
             margin-top:20px;
         }
         h1{
-            margin:20px 300px;
+            margin:20px 350px;
             font-size: 40px;
         }
         button{
@@ -53,6 +52,12 @@
     </form>
     <form action="${pageContext.request.contextPath}/order/all">
         <button>Show all orders</button>
+    </form>
+    <form action="${pageContext.request.contextPath}/logout">
+        <button>Logout</button>
+    </form>
+    <form action="${pageContext.request.contextPath}/injectData">
+        <button>Inject test Data</button>
     </form>
 </div>
 </body>

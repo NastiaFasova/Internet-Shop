@@ -14,7 +14,7 @@ import mate.academy.internetshop.service.UserService;
 
 public class AddOrderController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-    private static final Long USER_ID = 1L;
+    private static final String USER_ID = "user_id";
     private OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
     private ProductService productService
             = (ProductService) INJECTOR.getInstance(ProductService.class);
@@ -26,9 +26,11 @@ public class AddOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Bucket bucket = bucketService.getByUserId(USER_ID);
-        orderService.completeOrder(bucket.getProducts(), bucket.getUser());
-        bucketService.clear(bucket);
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        Bucket bucket = bucketService.getByUserId(userId);
+        orderService.completeOrder(bucketService.getByUserId(userId).getProducts(),
+                userService.get(userId));
+        bucketService.clear(bucketService.getByUserId(userId));
         resp.sendRedirect(req.getContextPath() + "/order/all");
     }
 }

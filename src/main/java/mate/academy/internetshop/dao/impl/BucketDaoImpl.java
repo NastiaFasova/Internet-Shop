@@ -6,15 +6,10 @@ import java.util.stream.IntStream;
 import mate.academy.internetshop.dao.BucketDao;
 import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.lib.Dao;
-import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.model.Bucket;
-import mate.academy.internetshop.service.UserService;
 
 @Dao
 public class BucketDaoImpl implements BucketDao {
-
-    @Inject
-    private UserService userService;
 
     @Override
     public Bucket create(Bucket bucket) {

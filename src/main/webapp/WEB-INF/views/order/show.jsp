@@ -60,7 +60,7 @@
     </c:forEach>
 </table>
 <br>
-<form action="${pageContext.request.contextPath}/order/all">
+<form action="${pageContext.request.contextPath}/orders">
     <button>Show all orders</button>
 </form>
 <br>

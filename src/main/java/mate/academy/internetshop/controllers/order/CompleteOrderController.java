@@ -6,15 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
-import mate.academy.internetshop.model.Bucket;
 import mate.academy.internetshop.service.BucketService;
 import mate.academy.internetshop.service.OrderService;
 import mate.academy.internetshop.service.ProductService;
 import mate.academy.internetshop.service.UserService;
 
-public class AddOrderController extends HttpServlet {
+public class CompleteOrderController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-    private static final Long USER_ID = 1L;
+    private static final String USER_ID = "user_id";
     private OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
     private ProductService productService
             = (ProductService) INJECTOR.getInstance(ProductService.class);
@@ -26,9 +25,10 @@ public class AddOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Bucket bucket = bucketService.getByUserId(USER_ID);
-        orderService.completeOrder(bucket.getProducts(), bucket.getUser());
-        bucketService.clear(bucket);
-        resp.sendRedirect(req.getContextPath() + "/order/all");
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        orderService.completeOrder(bucketService.getByUserId(userId).getProducts(),
+                userService.get(userId));
+        bucketService.clear(bucketService.getByUserId(userId));
+        resp.sendRedirect(req.getContextPath() + "/orders");
     }
 }

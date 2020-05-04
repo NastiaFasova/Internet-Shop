@@ -38,7 +38,7 @@
 </head>
 <body>
 <div>
-    <form action="${pageContext.request.contextPath}/products/add" method="post">
+    <form action="${pageContext.request.contextPath}/product/add" method="post">
         <h1>Add product</h1>
         <input type="text" placeholder="Product name " name="name" required>
         <input type="text" placeholder="Product price" name="price" required>

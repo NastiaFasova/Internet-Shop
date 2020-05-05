@@ -5,7 +5,7 @@
     <style>
         div{
             margin:20px auto;
-            width: 1100px;
+            width: 1200px;
         }
         form{
             display: inline-block;
@@ -38,7 +38,7 @@
         <button>Register</button>
     </form>
     <form action="${pageContext.request.contextPath}/product/buy">
-        <button>Buy products</button>
+        <button>Show or Buy products</button>
     </form>
     <form action="${pageContext.request.contextPath}/bucket/show">
         <button>Show your bucket</button>

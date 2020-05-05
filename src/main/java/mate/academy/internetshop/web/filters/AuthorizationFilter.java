@@ -45,10 +45,6 @@ public class AuthorizationFilter implements Filter {
             return;
         }
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        if (userId == null || userService.get(userId) == null) {
-            resp.sendRedirect(req.getContextPath() + "/login");
-            return;
-        }
         User user = userService.get(userId);
         if (isAuthorized(user, protectedUrls.get(requestUrl))) {
             filterChain.doFilter(req, resp);

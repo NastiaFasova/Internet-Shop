@@ -5,7 +5,7 @@
     <style>
         div{
             margin:20px auto;
-            width: 970px;
+            width: 1100px;
         }
         form{
             display: inline-block;
@@ -13,7 +13,7 @@
             margin-top:20px;
         }
         h1{
-            margin:20px 350px;
+            margin:30px 410px;
             font-size: 40px;
         }
         button{
@@ -42,7 +42,6 @@
     </form>
     <form action="${pageContext.request.contextPath}/bucket/show">
         <button>Show your bucket</button>
-    </form>
     </form>
     <form action="${pageContext.request.contextPath}/products">
         <button>Add and delete products</button>

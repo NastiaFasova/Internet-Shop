@@ -10,9 +10,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
+import org.apache.log4j.Logger;
 
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "user_id";
+    private static final Logger LOGGER = Logger.getLogger(AuthenticationFilter.class);
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
 
     @Override
@@ -34,6 +36,7 @@ public class AuthenticationFilter implements Filter {
 
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         if (userId == null) {
+            LOGGER.warn("This user entered wrong parameters or he's not registered yet...");
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }

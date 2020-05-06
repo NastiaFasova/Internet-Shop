@@ -2,8 +2,8 @@ package mate.academy.internetshop.web.filters;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -16,21 +16,25 @@ import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Role;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.UserService;
+import org.apache.log4j.Logger;
 
 public class AuthorizationFilter implements Filter {
     private static final String USER_ID = "user_id";
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-    private Map<String, List<Role.RoleName>> protectedUrls = new HashMap<>();
+    private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        protectedUrls.put("/users", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/products", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/bucket/show", List.of(Role.RoleName.USER));
-        protectedUrls.put("/product/buy", List.of(Role.RoleName.USER));
-        protectedUrls.put("/bucket/product/remove", List.of(Role.RoleName.USER));
-        protectedUrls.put("/order/add", List.of(Role.RoleName.USER));
+        protectedUrls.put("/users", Set.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/products", Set.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/order/delete", Set.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/bucket/show", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/product/buy", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/orders", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/bucket/product/remove", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/order/add", Set.of(Role.RoleName.USER));
     }
 
     @Override
@@ -48,15 +52,14 @@ public class AuthorizationFilter implements Filter {
         User user = userService.get(userId);
         if (isAuthorized(user, protectedUrls.get(requestUrl))) {
             filterChain.doFilter(req, resp);
-            return;
         } else {
+            LOGGER.warn("User tried to visit the forbidden page");
             req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
-            return;
         }
 
     }
 
-    public static boolean isAuthorized(User user, List<Role.RoleName> roleNames) {
+    public static boolean isAuthorized(User user, Set<Role.RoleName> roleNames) {
         for (Role.RoleName roleName : roleNames) {
             for (Role userRole : user.getRoles()) {
                 if (roleName.equals(userRole.getRoleName())) {

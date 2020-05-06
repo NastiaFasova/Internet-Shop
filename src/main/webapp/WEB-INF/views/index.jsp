@@ -13,7 +13,7 @@
             margin-top:20px;
         }
         h1{
-            margin:30px 410px;
+            margin:30px 450px;
             font-size: 40px;
         }
         button{
@@ -34,6 +34,15 @@
 <body>
 <div>
     <h1>Main Menu</h1>
+
+    <%if(userRole.equals("admin")){%>
+    <jsp:include page="../menu/admin_menu.jsp" />
+    <%}%>
+    <%if(userRole.equals("user")){%>
+    <jsp:include page="../menu/user_menu.jsp" />
+    <%}%>
+
+
     <form action="${pageContext.request.contextPath}/registration">
         <button>Register</button>
     </form>

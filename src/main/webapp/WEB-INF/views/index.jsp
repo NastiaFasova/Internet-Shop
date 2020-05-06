@@ -13,7 +13,7 @@
             margin-top:20px;
         }
         h1{
-            margin:30px 410px;
+            margin:30px 450px;
             font-size: 40px;
         }
         button{

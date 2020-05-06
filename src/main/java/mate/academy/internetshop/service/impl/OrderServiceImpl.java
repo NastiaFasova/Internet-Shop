@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     public Order completeOrder(List<Product> products, User user) {
         List<Product> orderProducts = new ArrayList<>(products);
         bucketService.clear(bucketService.getByUserId(user.getId()));
-        Order newOrder = new Order(orderProducts, user);
+        Order newOrder = new Order(orderProducts, user.getId());
         return orderDao.create(newOrder);
     }
 
@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getUserOrders(User user) {
         return orderDao.getAll()
                 .stream()
-                .filter(u -> u.getUser().getId().equals(user.getId()))
+                .filter(u -> u.getUserId().equals(user.getId()))
                 .collect(Collectors.toList());
     }
 

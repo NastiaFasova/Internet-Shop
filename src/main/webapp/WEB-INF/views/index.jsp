@@ -34,15 +34,6 @@
 <body>
 <div>
     <h1>Main Menu</h1>
-
-    <%if(userRole.equals("admin")){%>
-    <jsp:include page="../menu/admin_menu.jsp" />
-    <%}%>
-    <%if(userRole.equals("user")){%>
-    <jsp:include page="../menu/user_menu.jsp" />
-    <%}%>
-
-
     <form action="${pageContext.request.contextPath}/registration">
         <button>Register</button>
     </form>

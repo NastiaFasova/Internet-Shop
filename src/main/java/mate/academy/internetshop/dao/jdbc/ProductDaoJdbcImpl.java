@@ -31,7 +31,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             while (resultSet.next()) {
-                Long productId = resultSet.getLong(1);
+                Long productId = resultSet.getLong("product_id");
                 element.setId(productId);
             }
             return element;
@@ -48,19 +48,19 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
+            Product product = null;
             if (resultSet.next()) {
                 long productId = resultSet.getLong("product_id");
                 String name = resultSet.getString("product_name");
                 BigDecimal price = resultSet.getBigDecimal("price");
-                Product product = new Product(name, price);
+                product = new Product(name, price);
                 product.setId(productId);
-                return Optional.of(product);
             }
+            return Optional.ofNullable(product);
         } catch (SQLException ex) {
             LOGGER.error("User can't get the product by its ID" + ex);
             throw new DataProcessingException("Can't get the product by its ID");
         }
-        return Optional.empty();
     }
 
     @Override

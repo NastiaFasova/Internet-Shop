@@ -50,11 +50,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             ResultSet resultSet = statement.executeQuery();
             Product product = null;
             if (resultSet.next()) {
-                long productId = resultSet.getLong("product_id");
-                String name = resultSet.getString("product_name");
-                BigDecimal price = resultSet.getBigDecimal("price");
-                product = new Product(name, price);
-                product.setId(productId);
+                product = initProduct(resultSet);
             }
             return Optional.ofNullable(product);
         } catch (SQLException ex) {
@@ -71,11 +67,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                long productId = resultSet.getLong("product_id");
-                String name = resultSet.getString("product_name");
-                BigDecimal price = resultSet.getBigDecimal("price");
-                Product product = new Product(name, price);
-                product.setId(productId);
+                Product product = initProduct(resultSet);
                 products.add(product);
             }
         } catch (SQLException ex) {
@@ -113,5 +105,15 @@ public class ProductDaoJdbcImpl implements ProductDao {
             LOGGER.error("User can't delete the product" + ex);
             throw new DataProcessingException("Can't delete the product");
         }
+    }
+
+    private Product initProduct(ResultSet resultSet) throws SQLException {
+        Product product;
+        long productId = resultSet.getLong("product_id");
+        String name = resultSet.getString("product_name");
+        BigDecimal price = resultSet.getBigDecimal("price");
+        product = new Product(name, price);
+        product.setId(productId);
+        return product;
     }
 }

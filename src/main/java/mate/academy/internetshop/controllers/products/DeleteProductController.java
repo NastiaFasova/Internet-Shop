@@ -19,6 +19,6 @@ public class DeleteProductController extends HttpServlet {
         String productId = req.getParameter("id");
         Long id = Long.valueOf(productId);
         productService.delete(id);
-        req.getRequestDispatcher("/products/all").forward(req, resp);
+        req.getRequestDispatcher("/products").forward(req, resp);
     }
 }

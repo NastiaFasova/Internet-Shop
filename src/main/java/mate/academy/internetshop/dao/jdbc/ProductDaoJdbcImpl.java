@@ -31,13 +31,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             while (resultSet.next()) {
-                Long productId = resultSet.getLong("product_id");
+                Long productId = resultSet.getLong(1);
                 element.setId(productId);
             }
+            LOGGER.info("The product is created");
             return element;
-        } catch (SQLException ex) {
-            LOGGER.error("User can't create the product" + ex);
-            throw new DataProcessingException("Can't create the product");
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't create the product" + e);
         }
     }
 
@@ -50,12 +50,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
             ResultSet resultSet = statement.executeQuery();
             Product product = null;
             if (resultSet.next()) {
-                product = initProduct(resultSet);
+                product = getProductFromResultSet(resultSet);
             }
+            LOGGER.info("The user is successfully got by ID");
             return Optional.ofNullable(product);
-        } catch (SQLException ex) {
-            LOGGER.error("User can't get the product by its ID" + ex);
-            throw new DataProcessingException("Can't get the product by its ID");
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get the product by its ID" + e);
         }
     }
 
@@ -67,14 +67,14 @@ public class ProductDaoJdbcImpl implements ProductDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                Product product = initProduct(resultSet);
+                Product product = getProductFromResultSet(resultSet);
                 products.add(product);
             }
-        } catch (SQLException ex) {
-            LOGGER.error("User can't get all the products" + ex);
-            throw new DataProcessingException("Can't get all the products");
+            LOGGER.info("Information about all products is got");
+            return products;
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get all the products" + e);
         }
-        return products;
     }
 
     @Override
@@ -86,10 +86,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setBigDecimal(2, element.getPrice());
             statement.setLong(3, element.getId());
             statement.executeUpdate();
+            LOGGER.info("The product is updated");
             return element;
-        } catch (SQLException ex) {
-            LOGGER.error("User can't update the product" + ex);
-            throw new DataProcessingException("Can't update the product");
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't update the product" + e);
         }
     }
 
@@ -100,20 +100,21 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             statement.executeUpdate();
+            LOGGER.info("The product is deleted");
             return true;
-        } catch (SQLException ex) {
-            LOGGER.error("User can't delete the product" + ex);
-            throw new DataProcessingException("Can't delete the product");
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't delete the product" + e);
         }
     }
 
-    private Product initProduct(ResultSet resultSet) throws SQLException {
-        Product product;
+    private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
         long productId = resultSet.getLong("product_id");
         String name = resultSet.getString("product_name");
         BigDecimal price = resultSet.getBigDecimal("price");
-        product = new Product(name, price);
+        Product product = new Product(name, price);
         product.setId(productId);
+        LOGGER.info("The object of product is created");
         return product;
     }
+
 }

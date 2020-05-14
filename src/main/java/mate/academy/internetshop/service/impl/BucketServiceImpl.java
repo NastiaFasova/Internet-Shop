@@ -1,5 +1,6 @@
 package mate.academy.internetshop.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 import mate.academy.internetshop.dao.BucketDao;
 import mate.academy.internetshop.lib.Inject;
@@ -70,7 +71,7 @@ public class BucketServiceImpl implements BucketService {
     }
 
     @Override
-    public Bucket update(Bucket element) {
+    public Bucket update(Bucket element) throws SQLException {
         return bucketDao.update(element);
     }
 

@@ -22,8 +22,8 @@ public class ConnectionUtil {
         String url = "jdbc:mysql://localhost:3306/internet_shop?serverTimezone=UTC";
         try {
             return DriverManager.getConnection(url, dbProperties);
-        } catch (SQLException throwables) {
-            throw new RuntimeException("Can't establish connection with DB" + throwables);
+        } catch (SQLException throwable) {
+            throw new RuntimeException("Can't establish connection with DB" + throwable);
         }
     }
 }

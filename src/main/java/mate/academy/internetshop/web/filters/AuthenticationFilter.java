@@ -9,13 +9,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mate.academy.internetshop.lib.Injector;
 import org.apache.log4j.Logger;
 
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "user_id";
     private static final Logger LOGGER = Logger.getLogger(AuthenticationFilter.class);
-    private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

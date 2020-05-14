@@ -35,10 +35,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order.setId(orderId);
             }
             addProductsToOrder(order);
+            LOGGER.info("The order is made!");
             return order;
         } catch (SQLException e) {
-            LOGGER.error("User can't make the order" + e);
-            throw new DataProcessingException("Can't make the order");
+            throw new DataProcessingException("Can't make the order" + e);
         }
     }
 
@@ -53,10 +53,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
             if (resultSet.next()) {
                 order = getOrderFromResultSet(resultSet);
             }
+            LOGGER.info("The order is successfully got by its ID");
             return Optional.ofNullable(order);
         } catch (SQLException e) {
-            LOGGER.error("User can't get the order by its ID" + e);
-            throw new DataProcessingException("Can't get the order by its ID");
+            throw new DataProcessingException("Can't get the order by its ID" + e);
         }
     }
 
@@ -71,11 +71,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 Order order = getOrderFromResultSet(resultSet);
                 orders.add(order);
             }
+            LOGGER.info("The information about all orders is successfully got!");
+            return orders;
         } catch (SQLException e) {
-            LOGGER.error("Can't get all the orders" + e);
-            throw new DataProcessingException("Can't get all the orders");
+            throw new DataProcessingException("Can't get all the orders" + e);
         }
-        return orders;
     }
 
     @Override
@@ -87,11 +87,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(2, element.getUserId());
             statement.setLong(3, element.getId());
             statement.executeUpdate();
+            LOGGER.info("The information about order is updated");
+            return element;
         } catch (SQLException e) {
-            LOGGER.error("Can't update the order" + e);
-            throw new DataProcessingException("Can't update the order");
+            throw new DataProcessingException("Can't update the order" + e);
         }
-        return element;
     }
 
     @Override
@@ -101,10 +101,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             statement.executeUpdate();
+            LOGGER.info("The order is deleted");
             return true;
         } catch (SQLException e) {
-            LOGGER.error("Can't delete the order" + e);
-            throw new DataProcessingException("Can't delete the order");
+            throw new DataProcessingException("Can't delete the order" + e);
         }
     }
 
@@ -114,6 +114,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         Order order = new Order(userId);
         order.setId(orderId);
         order.setProducts(getAllProducts(orderId));
+        LOGGER.info("The object of order is created");
         return order;
     }
 
@@ -134,11 +135,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 product.setId(productId);
                 products.add(product);
             }
+            LOGGER.info("All the products from the order are successfully got");
+            return products;
         } catch (SQLException e) {
-            LOGGER.error("Can't get all products from order" + e);
-            throw new DataProcessingException("Can't get all products from order");
+            throw new DataProcessingException("Can't get all products from order" + e);
         }
-        return products;
     }
 
     private void addProductsToOrder(Order order) {
@@ -150,9 +151,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
             }
+            LOGGER.info("All the products are added to the order");
         } catch (SQLException e) {
-            LOGGER.error("Can't add products to order" + e);
-            throw new DataProcessingException("Can't add products to order");
+            throw new DataProcessingException("Can't add products to order" + e);
         }
     }
 }

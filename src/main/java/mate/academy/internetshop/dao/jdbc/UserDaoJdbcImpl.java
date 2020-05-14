@@ -33,8 +33,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 return Optional.of(getUserFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            LOGGER.error("Can't find the user by the login" + e);
-            throw new DataProcessingException("Can't find the user by the login");
+            throw new DataProcessingException("Can't find the user by the login" + e);
         }
         return Optional.empty();
     }
@@ -54,10 +53,10 @@ public class UserDaoJdbcImpl implements UserDao {
                 user.setId(resultSet.getLong(1));
             }
             addRoles(user);
+            LOGGER.info("The user is created");
             return user;
         } catch (SQLException e) {
-            LOGGER.error("Can't add the user" + e);
-            throw new DataProcessingException("Can't add the user");
+            throw new DataProcessingException("Can't add the user" + e);
         }
     }
 
@@ -72,8 +71,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 return Optional.of(getUserFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            LOGGER.error("Can't find the user by the ID" + e);
-            throw new DataProcessingException("Can't find the user by the ID");
+            throw new DataProcessingException("Can't find the user by the ID" + e);
         }
         return Optional.empty();
     }
@@ -89,11 +87,11 @@ public class UserDaoJdbcImpl implements UserDao {
                 User user = getUserFromResultSet(resultSet);
                 users.add(user);
             }
+            LOGGER.info("Information about all users is got");
+            return users;
         } catch (SQLException e) {
-            LOGGER.error("User can't get all the users" + e);
-            throw new DataProcessingException("Can't get all the users");
+            throw new DataProcessingException("Can't get all the users" + e);
         }
-        return users;
     }
 
     @Override
@@ -108,10 +106,10 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.executeUpdate();
             deleteRolesOfUsers(user.getId());
             addRoles(user);
+            LOGGER.info("Information about the user id updated");
             return user;
         } catch (SQLException e) {
-            LOGGER.error("User can't update the user" + e);
-            throw new DataProcessingException("Can't update the user");
+            throw new DataProcessingException("Can't update the user" + e);
         }
     }
 
@@ -123,10 +121,10 @@ public class UserDaoJdbcImpl implements UserDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             statement.executeUpdate();
+            LOGGER.info("The user is successfully deleted");
             return true;
-        } catch (SQLException ex) {
-            LOGGER.error("Can't delete the user" + ex);
-            throw new DataProcessingException("Can't delete the user");
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't delete the user" + e);
         }
     }
 
@@ -138,6 +136,7 @@ public class UserDaoJdbcImpl implements UserDao {
         User user = new User(name, login, password);
         user.setId(userId);
         user.setRoles(getRoles(userId));
+        LOGGER.info("The object of user is created");
         return user;
     }
 
@@ -168,11 +167,11 @@ public class UserDaoJdbcImpl implements UserDao {
             while (resultSet.next()) {
                 roles.add(Role.of(resultSet.getString("role_name")));
             }
-        } catch (SQLException ex) {
-            LOGGER.error("Can't get the roles" + ex);
-            throw new DataProcessingException("Can't get the roles");
+            LOGGER.info("The roles of user are successfully got");
+            return roles;
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get the roles" + e);
         }
-        return roles;
     }
 
     private Long getRoleId(Role.RoleName roleName, Connection connection) throws SQLException {

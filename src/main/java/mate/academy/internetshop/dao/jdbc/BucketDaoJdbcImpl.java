@@ -33,10 +33,10 @@ public class BucketDaoJdbcImpl implements BucketDao {
             resultSet.next();
             bucket.setId(resultSet.getLong(1));
             addProductToBucket(bucket);
+            LOGGER.info("The user is added into DB successfully");
             return bucket;
         } catch (SQLException e) {
-            LOGGER.error("Can't add the user" + e);
-            throw new DataProcessingException("Can't add the user");
+            throw new DataProcessingException("Can't add the user" + e);
         }
     }
 
@@ -52,10 +52,10 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 bucket = getBucketFromResultSet(resultSet);
                 bucket.setProducts(getAllProductsFromBucket(bucket.getId()));
             }
+            LOGGER.info("The user is get by ID successfully");
             return Optional.ofNullable(bucket);
         } catch (SQLException e) {
-            LOGGER.error("Can't get the user by its ID" + e);
-            throw new DataProcessingException("Can't get the bucket by its ID");
+            throw new DataProcessingException("Can't get the bucket by its ID" + e);
         }
     }
 
@@ -71,11 +71,11 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 bucket.setProducts(getAllProductsFromBucket(bucket.getId()));
                 buckets.add(bucket);
             }
+            LOGGER.info("The information about all users is get successfully");
+            return buckets;
         } catch (SQLException e) {
-            LOGGER.error("Can't get all the buckets" + e);
-            throw new DataProcessingException("Can't get all the buckets");
+            throw new DataProcessingException("Can't get all the buckets" + e);
         }
-        return buckets;
     }
 
     @Override
@@ -88,10 +88,10 @@ public class BucketDaoJdbcImpl implements BucketDao {
             statement.executeUpdate();
             deleteBucketFromBucketsProducts(bucket.getId());
             addProductToBucket(bucket);
+            LOGGER.info("The information about user is updated successfully");
             return bucket;
         } catch (SQLException e) {
-            LOGGER.error("Can't update the bucket" + e);
-            throw new DataProcessingException("Can't update the bucket");
+            throw new DataProcessingException("Can't update the bucket" + e);
         }
     }
 
@@ -102,10 +102,10 @@ public class BucketDaoJdbcImpl implements BucketDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             statement.executeUpdate();
+            LOGGER.info("The information about user is deleted successfully");
             return true;
         } catch (SQLException e) {
-            LOGGER.error("Can't delete the bucket by its id" + e);
-            throw new DataProcessingException("Can't delete the bucket by its id");
+            throw new DataProcessingException("Can't delete the bucket by its id" + e);
         }
     }
 
@@ -117,6 +117,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 statement.setLong(1, bucket.getId());
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
+                LOGGER.info("The products are successfully added into buckets_products");
             }
         }
     }
@@ -126,6 +127,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
         long userId = resultSet.getLong("user_id");
         Bucket bucket = new Bucket(userId);
         bucket.setId(bucketId);
+        LOGGER.info("The object of bucket is successfully created");
         return bucket;
     }
 
@@ -146,11 +148,11 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 product.setId(productId);
                 products.add(product);
             }
+            LOGGER.info("The products are successfully got from the bucket");
+            return products;
         } catch (SQLException e) {
-            LOGGER.error("Can't get all products from bucket" + e);
-            throw new DataProcessingException("Can't get all products from bucket");
+            throw new DataProcessingException("Can't get all products from bucket" + e);
         }
-        return products;
     }
 
     private void deleteBucketFromBucketsProducts(Long bucketId) {
@@ -159,9 +161,9 @@ public class BucketDaoJdbcImpl implements BucketDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, bucketId);
             statement.executeUpdate();
+            LOGGER.info("The products are successfully deleted from the bucket");
         } catch (SQLException e) {
-            LOGGER.error("Can't delete bucket from buckets_products" + e);
-            throw new DataProcessingException("Can't delete bucket from buckets_products");
+            throw new DataProcessingException("Can't delete bucket from buckets_products" + e);
         }
     }
 }

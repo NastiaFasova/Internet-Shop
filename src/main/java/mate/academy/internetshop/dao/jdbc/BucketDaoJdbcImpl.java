@@ -33,10 +33,10 @@ public class BucketDaoJdbcImpl implements BucketDao {
             resultSet.next();
             bucket.setId(resultSet.getLong(1));
             addProductToBucket(bucket);
-            LOGGER.info("The user is added into DB successfully");
+            LOGGER.info("The bucket is added into DB successfully");
             return bucket;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't add the user" + e);
+            throw new DataProcessingException("Can't add the bucket" + e);
         }
     }
 
@@ -52,7 +52,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 bucket = getBucketFromResultSet(resultSet);
                 bucket.setProducts(getAllProductsFromBucket(bucket.getId()));
             }
-            LOGGER.info("The user is get by ID successfully");
+            LOGGER.info("The bucket by its ID was retrieved successfully");
             return Optional.ofNullable(bucket);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get the bucket by its ID" + e);
@@ -71,7 +71,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 bucket.setProducts(getAllProductsFromBucket(bucket.getId()));
                 buckets.add(bucket);
             }
-            LOGGER.info("The information about all users is get successfully");
+            LOGGER.info("The information about all buckets was got successfully");
             return buckets;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get all the buckets" + e);
@@ -94,7 +94,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             statement.executeUpdate();
-            LOGGER.info("The information about user is deleted successfully");
+            LOGGER.info("The information about bucket was deleted successfully");
             return true;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete the bucket by its id" + e);

@@ -1,5 +1,6 @@
 package mate.academy.internetshop.service.impl;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order update(Order element) {
+    public Order update(Order element) throws SQLException {
         return orderDao.update(element);
     }
 

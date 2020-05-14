@@ -1,5 +1,6 @@
 package mate.academy.internetshop.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 import mate.academy.internetshop.dao.BucketDao;
 import mate.academy.internetshop.lib.Inject;
@@ -19,14 +20,14 @@ public class BucketServiceImpl implements BucketService {
     private UserService userService;
 
     @Override
-    public Bucket addProduct(Bucket bucket, Product product) {
+    public Bucket addProduct(Bucket bucket, Product product) throws SQLException {
         bucket.getProducts().add(product);
         bucketDao.update(bucket);
         return bucket;
     }
 
     @Override
-    public boolean deleteProduct(Bucket bucket, Product product) {
+    public boolean deleteProduct(Bucket bucket, Product product) throws SQLException {
         if (bucket.getProducts().remove(product)) {
             bucketDao.update(bucket);
             return true;
@@ -70,7 +71,7 @@ public class BucketServiceImpl implements BucketService {
     }
 
     @Override
-    public Bucket update(Bucket element) {
+    public Bucket update(Bucket element) throws SQLException {
         return bucketDao.update(element);
     }
 

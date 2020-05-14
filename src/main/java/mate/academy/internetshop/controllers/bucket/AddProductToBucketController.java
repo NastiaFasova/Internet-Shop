@@ -1,10 +1,13 @@
 package mate.academy.internetshop.controllers.bucket;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import mate.academy.internetshop.exceptions.DataProcessingException;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Bucket;
 import mate.academy.internetshop.service.BucketService;
@@ -23,7 +26,11 @@ public class AddProductToBucketController extends HttpServlet {
         Long userId = (Long)req.getSession().getAttribute(USER_ID);
         String productId = req.getParameter("id");
         Bucket bucket = bucketService.getByUserId(userId);
-        bucketService.addProduct(bucket, productService.get(Long.valueOf(productId)));
+        try {
+            bucketService.addProduct(bucket, productService.get(Long.valueOf(productId)));
+        } catch (SQLException e) {
+            throw new DataProcessingException("The product can't be added");
+        }
         resp.sendRedirect(req.getContextPath() + "/bucket/show");
     }
 }

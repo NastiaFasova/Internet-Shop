@@ -80,23 +80,15 @@ public class BucketDaoJdbcImpl implements BucketDao {
 
     @Override
     public Bucket update(Bucket bucket) {
-        String query = "UPDATE buckets SET user_id = ? WHERE bucket_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, bucket.getUserId());
-            statement.setLong(2, bucket.getId());
-            statement.executeUpdate();
-            deleteBucketFromBucketsProducts(bucket.getId());
-            addProductToBucket(bucket);
-            LOGGER.info("The information about user is updated successfully");
-            return bucket;
-        } catch (SQLException e) {
-            throw new DataProcessingException("Can't update the bucket" + e);
-        }
+        deleteBucketFromBucketsProducts(bucket.getId());
+        addProductToBucket(bucket);
+        LOGGER.info("The information about bucket is updated successfully");
+        return bucket;
     }
 
     @Override
     public boolean delete(Long id) {
+        deleteBucketFromBucketsProducts(id);
         String query = "DELETE FROM buckets WHERE bucket_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -109,7 +101,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
         }
     }
 
-    private void addProductToBucket(Bucket bucket) throws SQLException {
+    private void addProductToBucket(Bucket bucket) {
         String query = "INSERT INTO buckets_products(bucket_id, product_id) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             for (Product product : bucket.getProducts()) {
@@ -119,6 +111,8 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 statement.executeUpdate();
                 LOGGER.info("The products are successfully added into buckets_products");
             }
+        } catch (SQLException e) {
+            throw new DataProcessingException("The products can't be added" + e);
         }
     }
 
@@ -161,7 +155,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, bucketId);
             statement.executeUpdate();
-            LOGGER.info("The products are successfully deleted from the bucket");
+            LOGGER.info("The bucket is successfully deleted from the buckets_products");
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete bucket from buckets_products" + e);
         }

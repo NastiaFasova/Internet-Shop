@@ -79,19 +79,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     @Override
-    public Order update(Order element) {
-        String query = "UPDATE orders SET order_id = ?, user_id = ? WHERE order_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, element.getId());
-            statement.setLong(2, element.getUserId());
-            statement.setLong(3, element.getId());
-            statement.executeUpdate();
-            LOGGER.info("The information about order is updated");
-            return element;
-        } catch (SQLException e) {
-            throw new DataProcessingException("Can't update the order" + e);
-        }
+    public Order update(Order order) {
+       deleteOrderFromOrdersProducts(order.getId());
+       addProductsToOrder(order);
+       LOGGER.info("The information about order is updated");
+       return order;
     }
 
     @Override
@@ -154,6 +146,18 @@ public class OrderDaoJdbcImpl implements OrderDao {
             LOGGER.info("All the products are added to the order");
         } catch (SQLException e) {
             throw new DataProcessingException("Can't add products to order" + e);
+        }
+    }
+
+    private void deleteOrderFromOrdersProducts(Long orderId) {
+        String query = "DELETE FROM orders_products WHERE order_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, orderId);
+            statement.executeUpdate();
+            LOGGER.info("The products are successfully deleted from the order");
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't delete order from orders_products" + e);
         }
     }
 }

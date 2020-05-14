@@ -1,5 +1,6 @@
 package mate.academy.internetshop.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import mate.academy.internetshop.dao.UserDao;
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(User user) {
+    public User update(User user) throws SQLException {
         return userDao.update(user);
     }
 

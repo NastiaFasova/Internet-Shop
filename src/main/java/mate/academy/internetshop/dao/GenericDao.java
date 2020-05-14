@@ -1,6 +1,5 @@
 package mate.academy.internetshop.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +10,7 @@ public interface GenericDao<T, K> {
 
     List<T> getAll();
 
-    T update(T element) throws SQLException;
+    T update(T element);
 
     boolean delete(K id);
 }

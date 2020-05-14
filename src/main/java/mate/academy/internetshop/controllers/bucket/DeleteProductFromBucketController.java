@@ -1,13 +1,10 @@
 package mate.academy.internetshop.controllers.bucket;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import mate.academy.internetshop.exceptions.DataProcessingException;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.service.BucketService;
 import mate.academy.internetshop.service.ProductService;
@@ -26,11 +23,7 @@ public class DeleteProductFromBucketController extends HttpServlet {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         String productId = req.getParameter("id");
         Long id = Long.valueOf(productId);
-        try {
-            bucketService.deleteProduct(bucketService.getByUserId(userId), productService.get(id));
-        } catch (SQLException e) {
-            throw new DataProcessingException("The product can't be deleted");
-        }
+        bucketService.deleteProduct(bucketService.getByUserId(userId), productService.get(id));
         req.getRequestDispatcher("/bucket/show").forward(req, resp);
     }
 }

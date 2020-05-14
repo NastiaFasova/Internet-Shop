@@ -80,10 +80,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Order update(Order order) {
-       deleteOrderFromOrdersProducts(order.getId());
-       addProductsToOrder(order);
-       LOGGER.info("The information about order is updated");
-       return order;
+        deleteOrderFromOrdersProducts(order.getId());
+        addProductsToOrder(order);
+        LOGGER.info("The information about order is updated");
+        return order;
     }
 
     @Override

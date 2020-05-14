@@ -20,14 +20,14 @@ public class BucketServiceImpl implements BucketService {
     private UserService userService;
 
     @Override
-    public Bucket addProduct(Bucket bucket, Product product) throws SQLException {
+    public Bucket addProduct(Bucket bucket, Product product) {
         bucket.getProducts().add(product);
         bucketDao.update(bucket);
         return bucket;
     }
 
     @Override
-    public boolean deleteProduct(Bucket bucket, Product product) throws SQLException {
+    public boolean deleteProduct(Bucket bucket, Product product) {
         if (bucket.getProducts().remove(product)) {
             bucketDao.update(bucket);
             return true;

@@ -60,3 +60,5 @@ ALTER TABLE orders_products ADD FOREIGN KEY (order_id)
 	REFERENCES orders(order_id);
 ALTER TABLE orders_products ADD FOREIGN KEY (product_id)
 	REFERENCES products(product_id);
+ALTER TABLE `internet_shop`.`users`
+ADD COLUMN `salt` VARBINARY(64) AFTER `password`;

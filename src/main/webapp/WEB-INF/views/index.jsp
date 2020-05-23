@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Menu</title>
@@ -55,7 +55,7 @@
     <form action="${pageContext.request.contextPath}/logout">
         <button>Logout</button>
     </form>
-    <form action="${pageContext.request.contextPath}/injectData">
+    <form action="${pageContext.request.contextPath}/inject/data">
         <button>Inject test Data</button>
     </form>
 </div>

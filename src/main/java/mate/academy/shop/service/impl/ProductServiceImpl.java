@@ -1,6 +1,5 @@
 package mate.academy.shop.service.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 import mate.academy.shop.dao.ProductDao;
 import mate.academy.shop.lib.Inject;

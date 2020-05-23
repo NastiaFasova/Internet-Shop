@@ -62,13 +62,13 @@ on inner storage and on storage based on MySQL DataDase.
 * maven-checkstyle-plugin
 * mysql-connector-java 8.0.15
 
+<hr> 
 
 # <a name="for_developer"></a>For developer
 #### To run this project you need to install:
 * [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 * [Tomcat](https://tomcat.apache.org/download-90.cgi)
 * [MySQL 8 ](https://www.mysql.com/downloads/)
-<hr>
 
 #### After installation, you should do the following:
 Add this project to your IDE as Maven project.
@@ -78,7 +78,7 @@ Configure Tomcat :
 * Add Java SDK 11
 
 Change a path in src.main.java.resources.log4j.properties. It has to reach your logFile.
-<hr>
+
 
 #### If you want to test it using SQL DataBase, you should: 
 * Create a schema "internet_shop" in any SQL database.

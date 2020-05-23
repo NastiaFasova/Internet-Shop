@@ -51,7 +51,7 @@ In addition, DAO, Service layers, Servlets and JSP pages are absent.
 
 DAO layer has two implementations which gives you a possibility to test it both
 on inner storage and on storage based on MySQL DataDase.
-
+Hashing and salting of user's password are emplemented, so nobody has access to your secret data.
 
 # <a name="structure"></a>Project structure
 * Java 11

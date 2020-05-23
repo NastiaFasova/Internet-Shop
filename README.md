@@ -1,7 +1,7 @@
 # Internet-Shop
 ![Internet-shop](/images/shopping.png)
 
-##Table of contents
+## Table of contents
 * [Project purpose](#purpose)
 * [Project structure](#structure)
 * [For developer](#for_developer)
@@ -9,7 +9,9 @@
 
 # <a name="purpose"></a>Project purpose
 This project is a simple version of internet-shop
-and. It reproduces the main functions and opportunities 
+and. 
+
+It reproduces the main functions and opportunities 
 of online shopping.
 <hr>
 
@@ -18,7 +20,7 @@ of online shopping.
 * Bucket and order services
 * Two roles: User and Admin
 
-Depending on the role you will have such opportunities:
+### Depending on the role you will have such opportunities:
 
 #### Functions available for all users:
 * log in
@@ -95,7 +97,8 @@ Run the project and register.
 If you first time click on Inject Data.
 Then, by default two users will be generated.
  
-The first one - with a USER role (login = steve, password = 1) and the second – with an ADMIN role (login = admin, password = 2). 
+The first one - with a USER role (login = steve, password = 1) 
+The second one – with an ADMIN role (login = admin, password = 2). 
 <hr>
 
 # <a name="authors"></a>Authors

@@ -5,8 +5,10 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import mate.academy.shop.dao.BucketDao;
 import mate.academy.shop.db.Storage;
+import mate.academy.shop.lib.Dao;
 import mate.academy.shop.model.Bucket;
 
+@Dao
 public class BucketDaoImpl implements BucketDao {
 
     @Override

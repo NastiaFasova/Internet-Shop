@@ -87,6 +87,8 @@ Change a path in src.main.java.resources.log4j.properties. It has to reach your 
 
 * At src.main.java.mate.academy.shop.util.ConnectionUtil class use username and password for your DB to create a Connection.
 
+![Configure_db](/images/configureDB.png)
+
 * Configure the dependency for the connector to your DBMS. You should write in your DBMS,
  establish a connection, having downloaded the driver for it and specify the version of the DBMS.
 
@@ -95,6 +97,10 @@ Change a path in src.main.java.resources.log4j.properties. It has to reach your 
 #### If you want to test it using inner storage, you should:
 * Remove the annotations @Dao from src.main.java.mate.academy.shop.dao.jdbc
 and add to src.main.java.mate.academy.shop.dao.impl
+
+The example of how to do it is shown below
+
+![Configure_DAO](/images/configureDAO.png)
 
 
 Run the project and register.

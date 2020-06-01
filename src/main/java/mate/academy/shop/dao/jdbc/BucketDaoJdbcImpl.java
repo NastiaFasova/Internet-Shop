@@ -160,4 +160,23 @@ public class BucketDaoJdbcImpl implements BucketDao {
             throw new DataProcessingException("Can't delete bucket from buckets_products" + e);
         }
     }
+
+    @Override
+    public Optional<Bucket> getByUserId(Long userId) {
+        String query = "SELECT * FROM buckets where user_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            Bucket bucket = null;
+            while (resultSet.next()) {
+                bucket = getBucketFromResultSet(resultSet);
+                bucket.setProducts(getAllProductsFromBucket(bucket));
+            }
+            LOGGER.info("The bucket by userId was retrieved successfully");
+            return Optional.ofNullable(bucket);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't retrieve the bucket userId" + e);
+        }
+    }
 }

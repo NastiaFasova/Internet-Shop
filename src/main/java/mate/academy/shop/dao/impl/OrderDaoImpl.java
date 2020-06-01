@@ -2,6 +2,7 @@ package mate.academy.shop.dao.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import mate.academy.shop.dao.OrderDao;
 import mate.academy.shop.db.Storage;
@@ -37,5 +38,12 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public boolean delete(Long id) {
         return Storage.orders.removeIf(order -> order.getId().equals(id));
+    }
+
+    @Override
+    public List<Order> getByUserId(Long userId) {
+        return Storage.orders.stream()
+                .filter(order -> order.getUserId().equals(userId))
+                .collect(Collectors.toList());
     }
 }

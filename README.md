@@ -66,7 +66,7 @@ Hashing and salting of user's password are emplemented, so nobody has access to 
 
 # <a name="for_developer"></a>For developer
 #### To run this project you need to install:
-* [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+* [Java 13](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 * [Tomcat](https://tomcat.apache.org/download-90.cgi)
 * [MySQL 8 ](https://www.mysql.com/downloads/)
 
@@ -75,7 +75,7 @@ Add this project to your IDE as Maven project.
 
 Configure Tomcat : 
 * Add artifact
-* Add Java SDK 11
+* Add Java SDK 13
 
 Change a path in src.main.java.resources.log4j.properties. It has to reach your logFile.
 

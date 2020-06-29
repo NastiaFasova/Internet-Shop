@@ -8,8 +8,7 @@
 * [Authors](#authors)
 
 # <a name="purpose"></a>Project purpose
-This project is a simple version of internet-shop
-and. 
+This project is a simple version of internet-shop. 
 
 It reproduces the main functions and opportunities 
 of online shopping.
@@ -50,11 +49,11 @@ authentication and authorization filters were implemented.
 In addition, DAO, Service layers, Servlets and JSP pages are absent.
 
 DAO layer has two implementations which gives you a possibility to test it both
-on inner storage and on storage based on MySQL DataDase.
-Hashing and salting of user's password are emplemented, so nobody has access to your secret data.
+on inner storage and on storage based on MySQL DataBase.
+Hashing and salting of user's password are implemented, so nobody has access to your secret data.
 
 # <a name="structure"></a>Project structure
-* Java 11
+* Java 13
 * Maven 4.0.0
 * javax.servlet 3.1.0
 * jstl 1.2
@@ -66,7 +65,7 @@ Hashing and salting of user's password are emplemented, so nobody has access to 
 
 # <a name="for_developer"></a>For developer
 #### To run this project you need to install:
-* [Java 13](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+* [Java 13](https://www.oracle.com/java/technologies/javase-jdk13-downloads.html)
 * [Tomcat](https://tomcat.apache.org/download-90.cgi)
 * [MySQL 8 ](https://www.mysql.com/downloads/)
 
@@ -105,7 +104,7 @@ The example of how to do it is shown below
 
 Run the project and register.
 
-If you first time click on Inject Data.
+If it's your first visit, click on Inject Data.
 Then, by default two users will be generated.
  
 The first one - with a USER role (login = steve, password = 1) 
